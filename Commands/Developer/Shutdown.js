@@ -11,7 +11,7 @@ $addbutton[1;Button;1;B1;no;]
         prototype: "button",
         name: "B1",
         code: `
-Hey
+$interactionReply[ is unlocked!;;;;;yes]
 `
     }]
 
