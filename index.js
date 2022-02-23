@@ -1,7 +1,7 @@
 const aoijs = require("aoi.js");
 const express = require("express");
 const variables = require("./variables.js");
-//My "squerky squeky" express server
+require('dotenv').config();
 const app = express();
 
 app.get('/', (req, res) => {
@@ -12,7 +12,6 @@ app.listen(3000, () => {
     console.log('');
 });
 
-//I'll configure the prefix later after I add the JSON file and command handler.
 const bot = new aoijs.Bot({
     token: process.env.TOKEN,
     prefix: [`$getServerVar[prefix]`, '<@$clientID>', '<@!$clientID>'],
@@ -28,12 +27,13 @@ const bot = new aoijs.Bot({
     }
 });
 
-// const voice = new aoijs.Voice(bot, {
-//   cache: {
-//     cacheType: "Memory",//Disk | None
-//     enabled: true,
-//   },
-// });
+//I Got some few problems regarding Python installation if I create a new replit project at repl... (Package Problem)
+ const voice = new aoijs.Voice(bot, {
+   cache: {
+     cacheType: "Memory", //Disk | None
+     enabled: true,
+   },
+ });
 
 bot.variables(variables);
 
@@ -42,9 +42,9 @@ bot.onMessage({
     guildOnly: true
 });
 
-
+//Command Handler and Callbacks
 const loader = new aoijs.LoadCommands(bot)
-loader.load(bot.cmd, "./Commands/") //Command handler shyt
+loader.load(bot.cmd, "./Commands/")
 bot.onJoin()
 bot.onLeave()
 bot.onInteractionCreate()
