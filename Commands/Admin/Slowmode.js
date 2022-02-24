@@ -1,11 +1,9 @@
-module.exports = [{
+module.exports = {
     name: "slowmode",
     $if: "v4",
     aliases: ['sm', 'slow-mode'],
     code: `
 $if[$message[2]!=]
-$setMessageVar[B1;$findChannel[$message[2];no];$messageID]
-$addButton[1;Disable Slowmode;4;B1;no;]
 $author[1;$userTag;$authorAvatar;]
 $title[1;Slowmode]
 $description[1;Members will be restricted to sending one message and creating one thread per this interval, unless they have Manage Channel or Manage Messages permissions.
@@ -16,6 +14,7 @@ $footer[1;Date;https://emoji.gg/assets/emoji/2226-calendar.png]
 $addTimeStamp[1]
 $slowMode[$message[1];$findChannel[$message[2];no]]
 $onlyIf[$serverChannelExists[$findChannel[$message[2];no]]==true;Invalid channel provided.]
+$onlyIf[$isNumber[$message[1]]!=true;]
 
 $elseIf[$message[1]!=]
 $author[1;$userTag;$authorAvatar;]
@@ -27,10 +26,16 @@ $color[1;BLUE]
 $footer[1;Date;https://emoji.gg/assets/emoji/2226-calendar.png]
 $addTimeStamp[1]
 $slowMode[$message[1];$channelID]
+$onlyIf[$isNumber[$message[1]]!=true;]
 $endelseIf
 
 $elseIf[$getChannelSlowmode==0]
-Slowmode already disabled on this channel.
+$author[1;$userTag;$authorAvatar;]
+$title[1;Slowmode Already Disabled]
+$description[1;The function value has already been set to 0/none already.]
+$color[1;BLUE]
+$footer[1;Date;https://emoji.gg/assets/emoji/2226-calendar.png]
+$addTimeStamp[1]
 $endelseIf
 
 $elseIf[$message==]
@@ -45,22 +50,7 @@ $endelseIf
 
 $endIf
 `
-}, {
-        name: "B1",
-        type: "interaction",
-        prototype: "button",
-        code: `
-$getMessageVar[B1;$messageID]
-$interactionReply[$getChannelVar[B1];;;;;yes]
-$onlyPerms[admin;{
- "content" : "You are not allowed to use this button.",
- "ephemeral" : true,
- "options" : {
- "interaction" : true
- }
-}]
-`
-    }]
+}
 
 //!sm #time #channel
 //!sm #time

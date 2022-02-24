@@ -1,7 +1,15 @@
 module.exports = [{
     name: "d1",
     code: `
-$replaceText[$replaceText[$replaceText[$replaceText[$replaceText[$replaceText[$message[1];s; seconds];m; minutes];h; hours];1 seconds;1 second];1 minutes;1 minute];1 hours;1 hour]
+    $description[1;Test $let[A;Apple]]
+    $addButton[1;Disable Slowmode;4;B2;no;]
+`
+}, {
+    name: "B2",
+    type: "interaction",
+    prototype: "button",
+    code: `
+$get[A]
 `
 }]
 
