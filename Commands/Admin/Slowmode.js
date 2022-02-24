@@ -3,7 +3,17 @@ module.exports = {
     $if: "v4",
     aliases: ['sm', 'slow-mode'],
     code: `
-$if[$message[2]!=]
+$if[$replaceText[$replaceText[$replaceText[$message[1];s;];m;];h;]==$getChannelSlowmode]
+$author[1;$userTag;$authorAvatar;]
+$title[1;Slowmode Already Set To $replaceText[$replaceText[$replaceText[$replaceText[$replaceText[$replaceText[$message[1];s; seconds];m; minutes];h; hours];1 seconds;1 second];1 minutes;1 minute];1 hours;1 hour]]
+$description[1;The message value that you sent had already been the same and was not changed before.]
+$color[1;ORANGE]
+$footer[1;Date;https://emoji.gg/assets/emoji/2226-calendar.png]
+$addTimeStamp[1]
+$onlyIf[$message[2]!=;A]
+$onlyIf[$isNumber[$message[1]]!=true;B]
+
+$elseIf[$message[2]!=]
 $author[1;$userTag;$authorAvatar;]
 $title[1;Slowmode]
 $description[1;Members will be restricted to sending one message and creating one thread per this interval, unless they have Manage Channel or Manage Messages permissions.
@@ -13,8 +23,8 @@ $color[1;BLUE]
 $footer[1;Date;https://emoji.gg/assets/emoji/2226-calendar.png]
 $addTimeStamp[1]
 $slowMode[$message[1];$findChannel[$message[2];no]]
-$onlyIf[$serverChannelExists[$findChannel[$message[2];no]]==true;Invalid channel provided.]
-$onlyIf[$isNumber[$message[1]]!=true;]
+$onlyIf[$serverChannelExists[$findChannel[$message[2];no]]==true;{newEmbed:{author:$userTag:$authorAvatar}{title:Invalid Channel}{description:It seems like that channel doesn't exist in this server. You could try mentioning the channel, type the channel ID, or type the channel name.}{color:RED}{footer:Date:https://emoji.gg/assets/emoji/2226-calendar.png}{addTimeStamp}}]
+$endelseIf
 
 $elseIf[$message[1]!=]
 $author[1;$userTag;$authorAvatar;]
@@ -26,7 +36,9 @@ $color[1;BLUE]
 $footer[1;Date;https://emoji.gg/assets/emoji/2226-calendar.png]
 $addTimeStamp[1]
 $slowMode[$message[1];$channelID]
-$onlyIf[$isNumber[$message[1]]!=true;]
+$onlyIf[$message[2]==;]
+$onlyIf[$checkContains[$message[1];s;m;h]!=false;]
+$onlyIf[$isNumber[$replaceText[$replaceText[$replaceText[$message[1];s;];m;];h;]]!=false;]
 $endelseIf
 
 $elseIf[$getChannelSlowmode==0]
@@ -49,8 +61,9 @@ $slowMode[0;$channelID]
 $endelseIf
 
 $endIf
+
+
 `
 }
 
-//!sm #time #channel
-//!sm #time
+//$onlyIf[$serverChannelExists[$findChannel[$message[2];no]]==true;{newEmbed:{author:$userTag:$authorAvatar}{title:Invalid Channel}{description:It seems like that channel doesn't exist in this server. You could try mentioning the channel, type the channel ID, or type the channel name.}{color:RED}{footer:Date:https://emoji.gg/assets/emoji/2226-calendar.png}{addTimeStamp}}]

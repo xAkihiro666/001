@@ -48,6 +48,7 @@ loader.load(bot.cmd, "./Commands/")
 bot.onJoin()
 bot.onLeave()
 bot.onInteractionCreate()
+bot.onRateLimit()
 
 bot.status({
     text: "Wild Rift", // Sets a fckin text after the "type"
