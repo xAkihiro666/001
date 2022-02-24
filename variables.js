@@ -1,4 +1,5 @@
 const asdf = {
-    prefix: "!"
+    prefix: "!",
+    B1: ""
 };
 module.exports = asdf;

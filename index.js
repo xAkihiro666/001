@@ -49,10 +49,9 @@ bot.onJoin()
 bot.onLeave()
 bot.onInteractionCreate()
 
-
 bot.status({
     text: "Wild Rift", // Sets a fckin text after the "type"
     type: "PLAYING", // STREAMING, LISTENING, WATCHING, COMPETING, PLAYING
     status: "dnd", // idle, dnd, online, invisible
     time: 12 // This shyt will enable those shyts up there depending on the time that's here...
-}); 
+});
