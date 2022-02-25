@@ -24,6 +24,11 @@ $footer[1;Date;https://emoji.gg/assets/emoji/2226-calendar.png]
 $addTimeStamp[1]
 $slowMode[$message[1];$findChannel[$message[2];no]]
 $onlyIf[$serverChannelExists[$findChannel[$message[2];no]]==true;{newEmbed:{author:$userTag:$authorAvatar}{title:Invalid Channel}{description:It seems like that channel doesn't exist in this server. You could try mentioning the channel, type the channel ID, or type the channel name.}{color:RED}{footer:Date:https://emoji.gg/assets/emoji/2226-calendar.png}{addTimeStamp}}]
+$onlyIf[$replaceText[$message[1];s;]<=21600;You cannot put more than 21600 seconds!]
+$onlyIf[$replaceText[$message[1];m;]<=360;You cannot put more than 360 minutes!]
+$onlyIf[$replaceText[$message[1];h;]<=6;You cannot put more than 6 hours!]
+$onlyIf[$checkContains[$message[1];s;m;h]!=false;]
+$onlyIf[$isNumber[$replaceText[$replaceText[$replaceText[$message[1];s;];m;];h;]]!=false;]
 $endelseIf
 
 $elseIf[$message[1]!=]
@@ -37,6 +42,9 @@ $footer[1;Date;https://emoji.gg/assets/emoji/2226-calendar.png]
 $addTimeStamp[1]
 $slowMode[$message[1];$channelID]
 $onlyIf[$message[2]==;]
+$onlyIf[$replaceText[$message[1];s;]<=21600;You cannot put more than 21600 seconds!]
+$onlyIf[$replaceText[$message[1];m;]<=360;You cannot put more than 360 minutes!]
+$onlyIf[$replaceText[$message[1];h;]<=6;You cannot put more than 6 hours!]
 $onlyIf[$checkContains[$message[1];s;m;h]!=false;]
 $onlyIf[$isNumber[$replaceText[$replaceText[$replaceText[$message[1];s;];m;];h;]]!=false;]
 $endelseIf
@@ -65,5 +73,7 @@ $endIf
 
 `
 }
+
+//Permission Not Yet Set
 
 //$onlyIf[$serverChannelExists[$findChannel[$message[2];no]]==true;{newEmbed:{author:$userTag:$authorAvatar}{title:Invalid Channel}{description:It seems like that channel doesn't exist in this server. You could try mentioning the channel, type the channel ID, or type the channel name.}{color:RED}{footer:Date:https://emoji.gg/assets/emoji/2226-calendar.png}{addTimeStamp}}]
