@@ -1,5 +1,7 @@
 const asdf = {
     prefix: "!",
-    test: ""
+    cash: "0",
+    test: "",
+    count: "0"
 };
 module.exports = asdf;

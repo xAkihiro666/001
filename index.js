@@ -18,7 +18,7 @@ const bot = new aoijs.Bot({
     fetchInvites: true,
     /*errorMessage: `{title:**__SOMETHING WENT WRONG!__**}{description:An error occured! Please contact the [Developer](https://discord.bio/p/akihiro666)}{color:e91324}`,*/
     intents: "all",
-    autoUpdate: true,
+    autoUpdate: false,
     database: {
         type: "default",
         path: "./database/",
@@ -49,6 +49,7 @@ bot.onJoin()
 bot.onLeave()
 bot.onInteractionCreate()
 bot.onRateLimit()
+bot.onChannelDelete()
 
 bot.status({
     text: "Wild Rift", // Sets a fckin text after the "type"

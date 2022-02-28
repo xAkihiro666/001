@@ -4,10 +4,8 @@
     "\\Commands",
     "\\Commands\\Admin",
     "\\Commands\\Developer",
-    "\\Commands\\Member",
-    "\\database",
-    "\\database\\main"
+    "\\Commands\\Member"
   ],
-  "SelectedNode": "\\Commands\\Admin\\Slowmode.js",
+  "SelectedNode": "\\Commands\\Member\\Economy.js",
   "PreviewInSolutionExplorer": false
 }
